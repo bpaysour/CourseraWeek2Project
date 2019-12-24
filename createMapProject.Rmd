@@ -1,0 +1,26 @@
+---
+title: "Create a Simple Map"
+author: "Robert Paysour"
+date: "December 24, 2019"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## A Map of Centennial Conference Baseball Teams
+
+Markers indicate school name and 2019 win-loss record
+
+```{r, echo = FALSE}
+options(warn = -1, stringsAsFactors = FALSE);
+library(leaflet);  
+setwd("~/JHU_DataScienceCourse/CourseProjects/Course9/Week2");
+bbstat <- read.csv("CentennialStats.csv", header = TRUE);
+bbstatdf <- as.data.frame(bbstat);
+confMap <- leaflet() %>% 
+	addTiles() %>% 
+	addMarkers(lng = bbstatdf$lng, lat = bbstatdf$lat, popup = bbstatdf$schoolRec);
+confMap
+```
